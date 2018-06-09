@@ -1,3 +1,13 @@
+<?php
+if (isset($_GET['email'])){
+    echo $_GET['email'];
+    echo '<br>';
+    echo $_GET['nickname'];
+    echo '<br>';
+    echo $_GET['password'];
+}
+?>
+
 <html>
 <head>
     <meta charset="UTF-8">
