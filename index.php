@@ -9,7 +9,8 @@ hello,
 <?php
 echo "this is from php";
 ?>
-
+<br>
+<a href="reg.php">Register</a>
 
 </body>
 </html>
