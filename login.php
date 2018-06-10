@@ -1,3 +1,27 @@
+<?php
+$mysqli = mysqli_connect('localhost', 'shop', 'shop', 'shop');
+mysqli_autocommit($mysqli, true);
+mysqli_query($mysqli, "SET NAMES 'utf8mb4'");
+if (isset($_GET['email'])){
+    $sql = "select * from user where email=";
+    $sql .= "'" . $_GET['email'] . "'";
+    $result = mysqli_query($mysqli, $sql);
+    $row = mysqli_fetch_assoc($result);
+
+    if ($_GET['password'] == $row['password']){
+        setcookie("login","1");
+        setcookie("email",$row['email']);
+        setcookie("nickname",$row['nickname']);
+        header("Location: index.php");
+        exit;
+    }else{
+        echo "Password wrong";
+        exit;
+    }
+    mysqli_close($mysqli);
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
