@@ -59,3 +59,11 @@ $result = mysqli_stmt_execute($stmt); // instead mysqli_query()
 ```
 - do not need to combine str by ' . '
 - after pre compile, search speed much higher than before
+
+# Issue 6 - require, include for repeat php codes
+
+1. require: loading when current page is launching -> when start ->if not exsit, page error, stop
+2. include: running when codes run at that block -> when use -> if not exsit, warning, keep running
+```php
+require_once ('mysql.php');
+```
