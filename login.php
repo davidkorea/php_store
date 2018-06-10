@@ -1,8 +1,5 @@
 <?php
-session_start();
-$mysqli = mysqli_connect('localhost', 'shop', 'shop', 'shop');
-mysqli_autocommit($mysqli, true);
-mysqli_query($mysqli, "SET NAMES 'utf8mb4'");
+require_once ('mysql.php');
 if (isset($_POST['email'])){
     $sql = "select * from user where email= ?";
     $stmt = mysqli_prepare($mysqli, $sql);
