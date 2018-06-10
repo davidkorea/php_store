@@ -10,7 +10,7 @@ else {
 mysqli_autocommit($mysqli, true);
 mysqli_query($mysqli, "SET NAMES 'utf8mb4'");
 if (isset($_GET['email'])){
-    $sql = "insert into user(`email`, `nickname`, `password`) ";
+    $sql = "insert into user(`email`,`nickname`,`password`)";
     $sql .= "values (\"{$_GET['email']}\",\"{$_GET['nickname']}\",\"{$_GET['password']}\")";
     $result = mysqli_query($mysqli, $sql);
     if ($result){
