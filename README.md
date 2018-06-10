@@ -48,3 +48,14 @@ $hash = password_hash($password, PASSWORD_DEFAULT);
 ```php
 password_verify($_POST['password'], $row['password'])
 ```
+
+# Issue 5 - SQL Injection Attack
+**bind parameter**
+```php
+$sql = "insert into user(`email`, `nickname`, `password`) values (?,?,?)";
+$stmt = mysqli_prepare($mysqli, $sql); // pre compile
+mysqli_stmt_bind_param($stmt, 'sss', $email, $nickname, $hash);
+$result = mysqli_stmt_execute($stmt); // instead mysqli_query()
+```
+- do not need to combine str by ' . '
+- after pre compile, search speed much higher than before
