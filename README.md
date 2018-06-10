@@ -77,10 +77,12 @@ require_once ('mysql.php');
     Nickname: <input type="text" name="nickname"><br>
     Password: <input type="password" name="password"><br>
     Confirm: <input type="password" name="password1"><br>
+    <?php echo $err_msg; ?>
     <input type="submit">
 </form>
  ```
- -  ```name="regForm", onsubmit="return validateForm();"```
+ - ```name="regForm", onsubmit="return validateForm();"```
+ - ```<?php echo $err_msg; ?>```
  
  2. javascript
  ```javascript
@@ -120,3 +122,46 @@ require_once ('mysql.php');
  - ```document```: current page
  - ```document.forms```: all forms in current page
  - ```document.forms['regForm']```: select the form named 'regForm' in this page
+ 3. php
+ incase of js is banned by broswer.
+ ```php
+ <?php
+require_once ('mysql.php');
+
+$err_msg = "";
+if ($_SERVER["REQUEST_METHOD"] == "POST"){
+    if (empty($_POST['email'])){
+        $err_msg .= "pls input email<br>";
+    }
+    if (empty($_POST['nickname'])){
+        $err_msg .= "pls input nickname<br>";
+    }
+    if (empty($_POST['password'])){
+        $err_msg .= "pls input pw";
+    }
+    if ($_POST['password'] != $_POST['password1']){
+        $err_msg .= 'pls input same pw';
+    }
+
+    $email = $_POST['email'];
+    $nickname = $_POST['nickname'];
+    $password = $_POST['password'];
+    $hash = password_hash($password, PASSWORD_DEFAULT);
+
+    $sql = "insert into user(`email`,`nickname`,`password`) values (?,?,?)";
+    $stmt = mysqli_prepare($mysqli, $sql);
+    mysqli_stmt_bind_param($stmt, 'sss',$email,$nickname, $hash);
+    $result = mysqli_stmt_execute($stmt);
+//    $result = mysqli_query($mysqli, $sql);
+    if ($result){
+        header("Location: login.php");
+        exit;
+    }
+    else{
+//        echo("错误描述: " . mysqli_error($mysqli));
+        $err_msg .=  "数据库操作失败<br>";
+    }
+}
+//if (isset($_POST['email'])){}
+?>
+ ```
