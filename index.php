@@ -8,7 +8,7 @@
 <body>
 hello,
 <?php
-if ($_SESSION["login"] && $_SESSION["login"]){
+if (isset($_SESSION["login"]) && $_SESSION["login"]){
     echo 'Welcome: '. $_SESSION['nickname'] .', ' . $_SESSION['email'];
 }
 
@@ -16,6 +16,7 @@ if ($_SESSION["login"] && $_SESSION["login"]){
 <br>
 <a href="reg.php">Register</a>
 <a href="login.php">Login</a>
+<a href="logout.php">Logout</a>
 
 </body>
 </html>
