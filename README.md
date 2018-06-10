@@ -117,3 +117,6 @@ require_once ('mysql.php');
 </head>
 </html>
  ```
+ - ```document```: current page
+ - ```document.forms```: all forms in current page
+ - ```document.forms['regForm']```: select the form named 'regForm' in this page
