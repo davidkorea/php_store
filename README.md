@@ -202,3 +202,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
  +    exit('Password wrong');
   }
 ```
+
+# Issue 8 - Logout
+
+- logout.php
+```php
+<?php
+session_start();
+session_unset(); //clear
+session_destroy(); //destroy
+header("Location: index.php");
+exit;
+```
+- index.php
+```php
+<body>
+hello,
+<?php
+if (isset($_SESSION["login"]) && $_SESSION["login"]){
+    echo 'Welcome: '. $_SESSION['nickname'] .', ' . $_SESSION['email'];
+}
+?>
+<br>
+<a href="reg.php">Register</a>
+<a href="login.php">Login</a>
+<a href="logout.php">Logout</a>
+```
+  - if (```isset($_SESSION["login"])``` && ```$_SESSION["login"]```)
