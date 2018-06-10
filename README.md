@@ -37,14 +37,14 @@ $sql = "insert into user(`email`,`nickname`,`password`)";  (O)
 ```
 # Issue 4 - Hash Password
 
-- when register, insert the hashed pw into mysql
+1. when register, insert the hashed pw into mysql
 ```php
 $hash = password_hash($password, PASSWORD_DEFAULT);
 ```
   - ```$password = $_POST['password']```, input by user
   - ```PASSWORD_DEFAULT```, default hash method
   
-- when login, verify current input == pw saved in mysql by $row['password']
+2. when login, verify current input == pw saved in mysql by $row['password']
 ```php
 password_verify($_POST['password'], $row['password'])
 ```
