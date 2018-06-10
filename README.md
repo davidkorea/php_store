@@ -10,7 +10,8 @@ ServerName localhost:8080
 - config-https
 ```
 Listen 4433
-ServerName www.example.com:4433
+ServerName www.example.com:4433 (X)
+ServerName localhost:4433 (O)
 ```
 
 # Issue 2 - Project path
@@ -18,3 +19,19 @@ ServerName www.example.com:4433
 ```C:\xampp\htdocs\```
 
 or else, phpstorm would raise error on interpreter & phpunit
+
+# Issue 3 - insert into user
+
+**Error**
+
+> You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''mail','nickname','password')values ("","","")' at line 1
+
+
+**Answer**
+
+```php
+$sql = "insert into user('email','nickname','password')";  (X)
+```
+```php
+$sql = "insert into user(`email`,`nickname`,`password`)";  (O)
+```
