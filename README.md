@@ -10,7 +10,8 @@ ServerName localhost:8080
 - config-https
 ```
 Listen 4433
-ServerName www.example.com:4433
+ServerName www.example.com:4433 (X)
+ServerName localhost:4433 (O)
 ```
 
 # Issue 2 - Project path
