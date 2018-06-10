@@ -27,11 +27,25 @@ if (isset($_POST['email'])){
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script type="text/javascript">
+        function validateForm() {
+            var email = document.forms["loginForm"]['email'].value;
+            if (email == null || email == ""){
+                alert('pls input email');
+                return false;
+            }
+            var password = document.forms['loginForm']['password'].value;
+            if (password == null || password == ""){
+                alert('pls input pw');
+                return false;
+            }
+        }
+    </script>
     <meta charset="UTF-8">
     <title>PHP Store - Login</title>
 </head>
 <body>
-<form action="login.php" method="post">
+<form action="login.php" method="post" name="loginForm" onsubmit="return validateForm();">
     Email: <input type="email" name="email"><br>
     Password: <input type="password" name="password"><br>
     <input type="submit">
