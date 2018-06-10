@@ -1,4 +1,5 @@
 <?php
+session_start();
 $mysqli = mysqli_connect('localhost', 'shop', 'shop', 'shop');
 mysqli_autocommit($mysqli, true);
 mysqli_query($mysqli, "SET NAMES 'utf8mb4'");
@@ -9,9 +10,10 @@ if (isset($_POST['email'])){
     $row = mysqli_fetch_assoc($result);
 
     if (password_verify($_POST['password'], $row['password'])){
-        setcookie("login","1");
-        setcookie("email",$row['email']);
-        setcookie("nickname",$row['nickname']);
+        $_SESSION['login'] = true;
+        $_SESSION['email'] = $row['email'];
+        $_SESSION['nickname'] = $row['nickname'];
+//        $_SESSION['domain'] = 'localhost';
         header("Location: index.php");
         exit;
     }else{

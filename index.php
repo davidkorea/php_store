@@ -1,3 +1,4 @@
+<?php session_start();?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,13 +8,14 @@
 <body>
 hello,
 <?php
-if ($_COOKIE["login"] && $_COOKIE["login"] == "1"){
-    echo 'Welcome: '. $_COOKIE['email'];
+if ($_SESSION["login"] && $_SESSION["login"]){
+    echo 'Welcome: '. $_SESSION['email'];
 }
 
 ?>
 <br>
 <a href="reg.php">Register</a>
+<a href="login.php">Login</a>
 
 </body>
 </html>

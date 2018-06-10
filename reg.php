@@ -1,4 +1,5 @@
 <?php
+session_start();
 $mysqli = mysqli_connect('localhost','shop','shop','shop');
 if (!$mysqli){
     printf("can't connect to db. EC: %s", mysqli_connect_error());
