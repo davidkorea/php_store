@@ -70,8 +70,8 @@ require_once ('mysql.php');
  
  # Issue 7 - Form Validation
  
- 1. html
- ```html
+1. html
+```html
 <form action="reg.php" method="post", name="regForm", onsubmit="return validateForm();">
     Email: <input type="email" name="email"><br>
     Nickname: <input type="text" name="nickname"><br>
@@ -80,12 +80,12 @@ require_once ('mysql.php');
     <?php echo $err_msg; ?>
     <input type="submit">
 </form>
- ```
+```
  - ```name="regForm", onsubmit="return validateForm();"```
  - ```<?php echo $err_msg; ?>```
  
- 2. javascript
- ```javascript
+2. javascript
+```javascript
  <html>
 <head>
     <script type="text/javascript">
@@ -118,13 +118,15 @@ require_once ('mysql.php');
     <title>PHP Store - Register</title>
 </head>
 </html>
- ```
+```
  - ```document```: current page
  - ```document.forms```: all forms in current page
  - ```document.forms['regForm']```: select the form named 'regForm' in this page
- 3. php
- incase of js is banned by broswer.
- ```php
+3. php
+
+ in case of js is banned by broswer.
+ 
+```php
  <?php
 require_once ('mysql.php');
 
@@ -164,4 +166,39 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 }
 //if (isset($_POST['email'])){}
 ?>
- ```
+```
+4. email account validate when register & login
+ 
+**Duplicate register**
+```php
+ if ($result){
+        header("Location: login.php");
+        exit;
+    }elseif (mysqli_stmt_errno($stmt) == 1062){
+        $err_msg .= "email:" . $email . " exsits." . "<br>";
+    }else{
+        // echo("错误描述: " . mysqli_error($mysqli));
+        $err_msg .=  "数据库操作失败<br>";
+    }
+```
+- ```elseif (mysqli_stmt_errno($stmt) == 1062){$err_msg .= "email:" . $email . " exsits." . "<br>";}```
+
+**login without register**
+```php
+  $result = mysqli_stmt_get_result($stmt);
++ $count = mysqli_stmt_affected_rows($stmt); // how many lines of data returned
++ if ($count == 0){
++    exit("email:" . $_POST['email'] . " did not register.");
++ }
+  $row = mysqli_fetch_assoc($result);
+
+  if (password_verify($_POST['password'], $row['password'])){
+      $_SESSION['login'] = true;
+      $_SESSION['email'] = $row['email'];
+      $_SESSION['nickname'] = $row['nickname'];
+      header("Location: index.php");
+      exit;
+  }else{
+ +    exit('Password wrong');
+  }
+```
