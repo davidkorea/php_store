@@ -1,6 +1,21 @@
 <?php
 require_once ('mysql.php');
-if (isset($_POST['email'])){
+
+$err_msg = "";
+if ($_SERVER["REQUEST_METHOD"] == "POST"){
+    if (empty($_POST['email'])){
+        $err_msg .= "pls input email<br>";
+    }
+    if (empty($_POST['nickname'])){
+        $err_msg .= "pls input nickname<br>";
+    }
+    if (empty($_POST['password'])){
+        $err_msg .= "pls input pw";
+    }
+    if ($_POST['password'] != $_POST['password1']){
+        $err_msg .= 'pls input same pw';
+    }
+
     $email = $_POST['email'];
     $nickname = $_POST['nickname'];
     $password = $_POST['password'];
@@ -16,10 +31,11 @@ if (isset($_POST['email'])){
         exit;
     }
     else{
-        echo("错误描述: " . mysqli_error($mysqli));
+//        echo("错误描述: " . mysqli_error($mysqli));
+        $err_msg .=  "数据库操作失败<br>";
     }
 }
-mysqli_close($mysqli); //optional
+//if (isset($_POST['email'])){}
 ?>
 
 
@@ -61,8 +77,8 @@ mysqli_close($mysqli); //optional
     Nickname: <input type="text" name="nickname"><br>
     Password: <input type="password" name="password"><br>
     Confirm: <input type="password" name="password1"><br>
+    <?php echo $err_msg; ?>
     <input type="submit">
-
 </form>
 </body>
 </html>
