@@ -9,9 +9,9 @@ else {
 }
 mysqli_autocommit($mysqli, true);
 mysqli_query($mysqli, "SET NAMES 'utf8mb4'");
-if (isset($_GET['email'])){
+if (isset($_POST['email'])){
     $sql = "insert into user(`email`,`nickname`,`password`)";
-    $sql .= "values (\"{$_GET['email']}\",\"{$_GET['nickname']}\",\"{$_GET['password']}\")";
+    $sql .= "values (\"{$_POST['email']}\",\"{$_POST['nickname']}\",\"{$_POST['password']}\")";
     $result = mysqli_query($mysqli, $sql);
     if ($result){
         header("Location: login.php");
@@ -32,7 +32,7 @@ mysqli_close($mysqli); //optional
 </head>
 
 <body>
-<form action="reg.php">
+<form action="reg.php" method="post">
     Email: <input type="email" name="email"><br>
     Nickname: <input type="text" name="nickname"><br>
     Password: <input type="password" name="password"><br>
