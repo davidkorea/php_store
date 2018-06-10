@@ -35,3 +35,13 @@ $sql = "insert into user('email','nickname','password')";  (X)
 ```php
 $sql = "insert into user(`email`,`nickname`,`password`)";  (O)
 ```
+# Issue 4 - Hash Password
+
+- when register, insert the hashed pw into mysql
+```php
+$hash = password_hash($password, PASSWORD_DEFAULT);
+```
+- when login, verify current input == pw saved in mysql by $row['password']
+```php
+password_verify($_POST['password'], $row['password'])
+```
