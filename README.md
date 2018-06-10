@@ -23,9 +23,8 @@ or else, phpstorm would raise error on interpreter & phpunit
 
 **Error**
 
-```
-You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''mail','nickname','password')values ("","","")' at line 1
-```
+> You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''mail','nickname','password')values ("","","")' at line 1
+
 
 **Answer**
 
