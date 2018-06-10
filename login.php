@@ -8,7 +8,7 @@ if (isset($_POST['email'])){
     $result = mysqli_query($mysqli, $sql);
     $row = mysqli_fetch_assoc($result);
 
-    if ($_POST['password'] == $row['password']){
+    if (password_verify($_POST['password'], $row['password'])){
         setcookie("login","1");
         setcookie("email",$row['email']);
         setcookie("nickname",$row['nickname']);

@@ -10,8 +10,13 @@ else {
 mysqli_autocommit($mysqli, true);
 mysqli_query($mysqli, "SET NAMES 'utf8mb4'");
 if (isset($_POST['email'])){
+    $email = $_POST['email'];
+    $nickname = $_POST['nickname'];
+    $password = $_POST['password'];
+    $hash = password_hash($password, PASSWORD_DEFAULT);
+
     $sql = "insert into user(`email`,`nickname`,`password`)";
-    $sql .= "values (\"{$_POST['email']}\",\"{$_POST['nickname']}\",\"{$_POST['password']}\")";
+    $sql .= "values ('{$email}','{$nickname}','{$hash}')";
     $result = mysqli_query($mysqli, $sql);
     if ($result){
         header("Location: login.php");
