@@ -52,5 +52,6 @@ if (isset($_POST['email'])){
     Password: <input type="password" name="password"><br>
     <input type="submit">
 </form>
+<a href="find_password.php">Forgot password?</a>
 </body>
 </html>

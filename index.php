@@ -17,6 +17,7 @@ if (isset($_SESSION["login"]) && $_SESSION["login"]){
 <a href="reg.php">Register</a>
 <a href="login.php">Login</a>
 <a href="logout.php">Logout</a>
+<a href="find_password.php">Forgot Password</a>
 
 </body>
 </html>
