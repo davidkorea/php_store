@@ -73,7 +73,15 @@ require_once ('mysql.php');
  1. html
  ```html
 <form action="reg.php" method="post", name="regForm", onsubmit="return validateForm();">
+    Email: <input type="email" name="email"><br>
+    Nickname: <input type="text" name="nickname"><br>
+    Password: <input type="password" name="password"><br>
+    Confirm: <input type="password" name="password1"><br>
+    <input type="submit">
+</form>
  ```
+ -  ```name="regForm", onsubmit="return validateForm();"```
+ 
  2. javascript
  ```javascript
  <html>
