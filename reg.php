@@ -29,6 +29,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     if ($result){
         header("Location: login.php");
         exit;
+    }elseif (mysqli_stmt_errno($stmt) == 1062){
+        $err_msg .= "email:" . $email . " exsits." . "<br>";
     }
     else{
 //        echo("错误描述: " . mysqli_error($mysqli));

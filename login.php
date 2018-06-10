@@ -6,7 +6,10 @@ if (isset($_POST['email'])){
     mysqli_stmt_bind_param($stmt,'s',$_POST['email']);
     mysqli_stmt_execute($stmt);
     $result = mysqli_stmt_get_result($stmt);
-
+    $count = mysqli_stmt_affected_rows($stmt);
+    if ($count == 0){
+        exit("email:" . $_POST['email'] . " did not register.");
+    }
     $row = mysqli_fetch_assoc($result);
 
     if (password_verify($_POST['password'], $row['password'])){
@@ -17,8 +20,7 @@ if (isset($_POST['email'])){
         header("Location: index.php");
         exit;
     }else{
-        echo "Password wrong";
-        exit;
+        exit('Password wrong');
     }
     mysqli_close($mysqli);
 }
