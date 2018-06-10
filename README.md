@@ -29,8 +29,8 @@ or else, phpstorm would raise error on interpreter & phpunit
 **Answer**
 
 ```php
-$sql = "insert into user('mail','nickname','password')";  (X)
+$sql = "insert into user('email','nickname','password')";  (X)
 ```
 ```php
-$sql = "insert into user(`mail`,`nickname`,`password`)";  (O)
+$sql = "insert into user(`email`,`nickname`,`password`)";  (O)
 ```
