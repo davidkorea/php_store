@@ -41,6 +41,9 @@ $sql = "insert into user(`email`,`nickname`,`password`)";  (O)
 ```php
 $hash = password_hash($password, PASSWORD_DEFAULT);
 ```
+  - ```$password = $_POST['password']```, input by user
+  - ```PASSWORD_DEFAULT```, default hash method
+  
 - when login, verify current input == pw saved in mysql by $row['password']
 ```php
 password_verify($_POST['password'], $row['password'])
