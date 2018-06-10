@@ -67,3 +67,45 @@ $result = mysqli_stmt_execute($stmt); // instead mysqli_query()
 ```php
 require_once ('mysql.php');
 ```
+ 
+ # Issue 7 - Form Validation
+ 
+ 1. html
+ ```html
+<form action="reg.php" method="post", name="regForm", onsubmit="return validateForm();">
+ ```
+ 2. javascript
+ ```javascript
+ <html>
+<head>
+    <script type="text/javascript">
+        function validateForm() {
+            var email = document.forms["regForm"]["email"].value;
+            if (email == null || email == ""){
+                alert("pls input email");
+                return false;
+            }
+
+            var nickname = document.forms["regForm"]["nickname"].value;
+            if (nickname == null || nickname == ""){
+                alert('pls input nickname');
+                return false;
+            }
+
+            var password = document.forms["regForm"]["password"].value;
+            if (password == null || password == ""){
+                alert('pls input pw');
+                return false;
+            }
+            var password1 = document.forms["regForm"]["password1"].value;
+            if (password != password1){
+                alert('pls input same pw');
+                return false;
+            }
+        }
+    </script>
+    <meta charset="UTF-8">
+    <title>PHP Store - Register</title>
+</head>
+</html>
+ ```
