@@ -4,9 +4,12 @@ $mysqli = mysqli_connect('localhost', 'shop', 'shop', 'shop');
 mysqli_autocommit($mysqli, true);
 mysqli_query($mysqli, "SET NAMES 'utf8mb4'");
 if (isset($_POST['email'])){
-    $sql = "select * from user where email=";
-    $sql .= "'" . $_POST['email'] . "'";
-    $result = mysqli_query($mysqli, $sql);
+    $sql = "select * from user where email= ?";
+    $stmt = mysqli_prepare($mysqli, $sql);
+    mysqli_stmt_bind_param($stmt,'s',$_POST['email']);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+
     $row = mysqli_fetch_assoc($result);
 
     if (password_verify($_POST['password'], $row['password'])){

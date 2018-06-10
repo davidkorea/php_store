@@ -16,9 +16,11 @@ if (isset($_POST['email'])){
     $password = $_POST['password'];
     $hash = password_hash($password, PASSWORD_DEFAULT);
 
-    $sql = "insert into user(`email`,`nickname`,`password`)";
-    $sql .= "values ('{$email}','{$nickname}','{$hash}')";
-    $result = mysqli_query($mysqli, $sql);
+    $sql = "insert into user(`email`,`nickname`,`password`) values (?,?,?)";
+    $stmt = mysqli_prepare($mysqli, $sql);
+    mysqli_stmt_bind_param($stmt, 'sss',$email,$nickname, $hash);
+    $result = mysqli_stmt_execute($stmt);
+//    $result = mysqli_query($mysqli, $sql);
     if ($result){
         header("Location: login.php");
         exit;

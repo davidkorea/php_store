@@ -9,7 +9,7 @@
 hello,
 <?php
 if ($_SESSION["login"] && $_SESSION["login"]){
-    echo 'Welcome: '. $_SESSION['email'];
+    echo 'Welcome: '. $_SESSION['nickname'] .', ' . $_SESSION['email'];
 }
 
 ?>
