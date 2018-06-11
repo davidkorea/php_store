@@ -17,6 +17,7 @@
         <?php require_once 'sidebar.php' ?>
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
             <h6>商品分类</h6>
+            <a href="category_edit.php" class="btn"><span data-feather="plus"></span>新增</a>
             <div class="table-responsive">
                 <table class="table table-striped table-sm">
                     <thead>

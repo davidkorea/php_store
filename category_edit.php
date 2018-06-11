@@ -5,6 +5,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sql = "update category set `code`=?,`name`=? where id=?";
         $stmt = mysqli_prepare($mysqli, $sql);
         mysqli_stmt_bind_param($stmt, 'ssi', $_POST['code'], $_POST['name'], $_POST['id']);
+        // s = str, i = int
     } else {
         $sql = "insert into category (`code`,`name`) VALUES (?,?)";
         $stmt = mysqli_prepare($mysqli, $sql);
@@ -51,7 +52,7 @@ $name = $row['name'];
                 <div class="form-group row">
                     <label for="id" class="col-sm-2 col-form-label">序号</label>
                     <input type="text" class="form-control col-sm-6" id="id" name="id" value="<?php echo $id ?>"
-                           readonly>
+                           <?php echo $id == null ? '' : ' readonly';?> >
                 </div>
                 <div class="form-group row">
                     <label for="code" class="col-sm-2 col-form-label">编码</label>
