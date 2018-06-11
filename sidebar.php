@@ -1,4 +1,7 @@
 <?php $script_name = basename($_SERVER['SCRIPT_NAME'], '.php'); ?>
+// $_SERVER['SCRIPT_NAME'] 当前页面的完整url路径，ex：http://localhost:8080/php_store/category.php
+// basename(url,suffix) 取路径最后的文件名category.php，通过参数suffix去掉.php
+// 最终，当访问某分类页面时 $script_name = category
 <nav class="col-md-2 d-none d-md-block bg-light sidebar">
     <div class="sidebar-sticky">
         <ul class="nav flex-column">
