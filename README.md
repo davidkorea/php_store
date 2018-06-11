@@ -229,3 +229,11 @@ if (isset($_SESSION["login"]) && $_SESSION["login"]){
 <a href="logout.php">Logout</a>
 ```
   - if (```isset($_SESSION["login"])``` && ```$_SESSION["login"]```)
+  
+ # Issue 9 - FInd Password_SMTP
+1. Mercury
+
+ ![](https://raw.githubusercontent.com/davidkorea/php_store/master/README/mercury.png)
+ 
+2. Outlook
+ ![](https://raw.githubusercontent.com/davidkorea/php_store/master/README/outlook.png)
