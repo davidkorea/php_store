@@ -232,7 +232,6 @@ if (isset($_SESSION["login"]) && $_SESSION["login"]){
   
  # Issue 9 - FInd Password_SMTP
 1. Mercury
-
  ![](https://raw.githubusercontent.com/davidkorea/php_store/master/README/mercury.png)
  
  ![](https://raw.githubusercontent.com/davidkorea/php_store/master/README/mercury2.png)
