@@ -231,10 +231,11 @@ if (isset($_SESSION["login"]) && $_SESSION["login"]){
   - if (```isset($_SESSION["login"])``` && ```$_SESSION["login"]```)
   
  # Issue 9 - FInd Password_SMTP
-1. Mercury
+1. Mercury - SMTP
  ![](https://raw.githubusercontent.com/davidkorea/php_store/master/README/mercury.png)
  
+2. Mercury - local user
  ![](https://raw.githubusercontent.com/davidkorea/php_store/master/README/mercury2.png)
 
-2. Outlook
+3. Outlook
  ![](https://raw.githubusercontent.com/davidkorea/php_store/master/README/outlook.png)
