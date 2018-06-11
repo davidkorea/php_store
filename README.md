@@ -230,7 +230,10 @@ if (isset($_SESSION["login"]) && $_SESSION["login"]){
 ```
   - if (```isset($_SESSION["login"])``` && ```$_SESSION["login"]```)
   
- # Issue 9 - FInd Password_SMTP
+# Issue 9 - FInd Password_SMTP
+
+> Reference: [XAMPP配置Mercury 邮件服务器教程](http://blog.sina.com.cn/s/blog_4cd978f90102vnym.html)
+
 1. Mercury - SMTP
  ![](https://raw.githubusercontent.com/davidkorea/php_store/master/README/mercury.png)
  
