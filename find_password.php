@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     }
 
     $code = md5(uniqid(microtime(true), true));
-    $link = "https://localhost:4433/php_store/find_password2.php?email=".$_POST['email'];
+    $link = "http://localhost/php_store/find_password2.php?email=".$_POST['email'];
     $link .= "&code=".$code;
 
     $subject = "PHP Store - Find Password";
