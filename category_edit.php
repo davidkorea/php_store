@@ -52,7 +52,10 @@ $name = $row['name'];
                 <div class="form-group row">
                     <label for="id" class="col-sm-2 col-form-label">序号</label>
                     <input type="text" class="form-control col-sm-6" id="id" name="id" value="<?php echo $id ?>"
-                           <?php echo $id == null ? '' : ' readonly';?> >
+                        readonly >
+<!--                    <input type="text" class="form-control col-sm-6" id="id" name="id" value="--><?php //echo $id ?><!--"-->
+<!--                           --><?php //echo $id == null ? '' : ' readonly';?><!-- >-->
+<!--                         기능을 잘되는데 idx 직업 입력 필요없음, DB가 자동 생성됨-->
                 </div>
                 <div class="form-group row">
                     <label for="code" class="col-sm-2 col-form-label">编码</label>
