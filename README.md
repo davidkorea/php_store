@@ -244,6 +244,7 @@ if (isset($_SESSION["login"]) && $_SESSION["login"]){
  ![](https://raw.githubusercontent.com/davidkorea/php_store/master/README/outlook.png)
  
 # Issue 10 - PHP mysql_fetch_ assoc() array() row()
-[PHP mysql_fetch_assoc() 函数](http://www.w3school.com.cn/php/func_mysql_fetch_assoc.asp)
-[PHP mysql_fetch_array() 函数](http://www.w3school.com.cn/php/func_mysql_fetch_array.asp)
-[PHP mysql_fetch_row() 函数](http://www.w3school.com.cn/php/func_mysql_fetch_row.asp)
+
+1. [PHP mysql_fetch_assoc() 函数](http://www.w3school.com.cn/php/func_mysql_fetch_assoc.asp)
+2. [PHP mysql_fetch_array() 函数](http://www.w3school.com.cn/php/func_mysql_fetch_array.asp)
+3. [PHP mysql_fetch_row() 函数](http://www.w3school.com.cn/php/func_mysql_fetch_row.asp)
