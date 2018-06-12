@@ -44,7 +44,7 @@ $total_pages = ceil($total_rows / $count_per_page); //ceil天花板，1.4->2，2
                     </thead>
                     <tbody>
                     <?php
-                    $sql = "select * from category LIMIT ?,?";
+                    $sql = "select * from category LIMIT ?,?"; // LIMIT ?,? 跳过多少条，取多少条
                     $stmt = mysqli_prepare($mysqli, $sql);
                     mysqli_stmt_bind_param($stmt,'ii',$offset,$count_per_page);
                     mysqli_stmt_execute($stmt);
