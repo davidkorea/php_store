@@ -3,6 +3,7 @@ require_once 'mysql.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $upload_success = false;
     if ($_FILES['pic']['size'] > 0 && getimagesize($_FILES['pic']['tmp_name'])){
+        //有这个文件，且这个文件是图片格式
         // 全局变量_FILE['pic']['size']检测到名为pic的input的size大小>0，['tmp_name']上传时临时文件名
         // 而且getimagesize判断图片格式文件的大小存在，而不是exe，doc等文件格式的大小
         $arr_file_name = explode(".", $_FILES['pic']['name']); // split('.')[-1] 取得上传文件的后缀名
@@ -10,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $pic_file_name = $time_dir . md5(uniqid(microtime(true), true)) . '.' . $ext;
         //需要保存在db的文件名
         $upload_success = move_uploaded_file($_FILES['pic']['tmp_name'], $UPLOAD_DIR . $pic_file_name);
-        //把存在临时文件夹的上传文件move到本地实际文件夹中
+        //把存在临时文件夹的上传文件move到本地实际文件夹中，移动成功返回true？
     }
 
     // 以下分为4种情况，
