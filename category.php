@@ -66,6 +66,7 @@ $total_pages = ceil($total_rows / $count_per_page); //ceil天花板，1.4->2，2
                 <ul class="pagination justify-content-center">
                     <li class="page-item">
                         <a class="page-link" href="?page=1">首页</a>
+<!--                        href="?page=1"默认取当前url作为前缀-->
                     </li>
                     <li class="page-item <?php echo $page <= 1 ? 'disabled' : ''; ?>">
                         <a class="page-link" href="<?php echo $page <= 1 ? '#' : "?page=" . ($page - 1); ?>">上页</a>
