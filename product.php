@@ -37,14 +37,14 @@ $total_pages = ceil($total_rows / $count_per_page);
                         <th>价格</th>
                         <th>分类</th>
                         <th>创建时间</th>
-                        <th>状态</th>
+                        <th>上架状态</th>
                         <th>上架时间</th>
                         <th>操作</th>
                     </tr>
                     </thead>
                     <tbody>
                     <?php
-                    $sql = "select * from product order by id desc LIMIT ?,? ";
+                    $sql = "select p.*,c.name as cat_name from product p left join category c on p.cat = c.code order by id desc LIMIT ?,? ";
                     $stmt = mysqli_prepare($mysqli, $sql);
                     mysqli_stmt_bind_param($stmt, 'ii', $offset, $count_per_page);
                     mysqli_stmt_execute($stmt);
@@ -55,9 +55,9 @@ $total_pages = ceil($total_rows / $count_per_page);
                         echo "<td>{$id}</td>";
                         echo "<td>{$row['name']}</td>";
                         echo "<td>{$row['price']}</td>";
-                        echo "<td>{$row['cat']}</td>";
+                        echo "<td>{$row['cat_name']}</td>";
                         echo "<td>" . $row['create_time'] . "</td>";
-                        echo "<td>{$row['publish_status']}</td>";
+                        echo "<td>" . show_product_publish_status($row['publish_status']) . "</td>";
                         echo "<td>" . $row['publish_time'] . "</td>";
                         echo "<td><a href='product_edit.php?id=$id'><span data-feather='edit'></span></a>&nbsp;&nbsp;";
                         echo "</td>";
