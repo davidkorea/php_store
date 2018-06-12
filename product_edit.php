@@ -66,8 +66,18 @@ $id = $row['id'];
                 </div>
                 <div class="form-group row">
                     <label for="cat" class="col-sm-2 col-form-label">分类</label>
-                    <input type="text" class="form-control col-sm-6" id="cat" name="cat"
-                           value="<?php echo $row['cat'] ?>">
+                    <select name="cat" class="form-control col-sm-6" id="cat">
+                        <?php
+                        $sql = "select * from category where length(code) = 6 order by id";
+                        $stmt = mysqli_prepare($mysqli, $sql);
+                        mysqli_stmt_execute($stmt);
+                        $result = mysqli_stmt_get_result($stmt);
+                        while ($row2 = mysqli_fetch_assoc($result)) {
+                            $selected = $row['cat'] == $row2['code'] ? 'selected' : '';
+                            echo "<option value='{$row2['code']}' {$selected}>{$row2['name']}</option>";
+                        }
+                        ?>
+                    </select>
                 </div>
                 <div class="form-group row">
                     <label for="description" class="col-sm-2 col-form-label">详细描述</label>
@@ -82,8 +92,10 @@ $id = $row['id'];
                 </div>
                 <div class="form-group row">
                     <label for="publish_status" class="col-sm-2 col-form-label">发布状态</label>
-                    <input type="text" class="form-control col-sm-6" id="publish_status" name="publish_status"
-                           value="<?php echo $row['publish_status'] ?>" readonly>
+                    <select id="publish_status" name="publish_status" class="form-control col-sm-6" disabled>
+                        <option value="0" <?php echo $row['publish_status'] == 0 ? 'selected' : ''; ?>>未上架</option>
+                        <option value="1" <?php echo $row['publish_status'] == 1 ? 'selected' : ''; ?>>已上架</option>
+                    </select>
                 </div>
                 <div class="form-group row">
                     <label for="publish_time" class="col-sm-2 col-form-label">发布时间</label>
