@@ -18,6 +18,7 @@
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
             <h6>商品分类</h6>
             <a href="category_edit.php" class="btn"><span data-feather="plus"></span>新增</a>
+<!--            새로 추하하기땜에 아래 수정 버튼 처럼 링크 뒤애 ?id=$id 붙이지않음-->
             <div class="table-responsive">
                 <table class="table table-striped table-sm">
                     <thead>
