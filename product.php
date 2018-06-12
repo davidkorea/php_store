@@ -16,6 +16,32 @@ $total_pages = ceil($total_rows / $count_per_page);
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <script type="text/javascript">
+        // 下面按钮click后，运行此函数onclick='return onPublish({$id}, 1);'
+        function onPublish(id, status) {
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200) {
+                    // readyState === 4, ajax请求返回成功，this为当前html
+                    var response = this.responseText;
+                    // responseText 为访问"product_publish.php?id="返回的内容
+                    // 若返回内容为success，往下执行
+                    // 其中success已经在"product_publish.php"设置好了
+                    if (response === "success") {
+                        if (status === 1) {
+                            alert('上架成功');
+                        } else {
+                            alert('下架成功');
+                        }
+                        location.reload(); //当前网页重新刷新加载
+                    }
+                }
+            };
+            xmlhttp.open("GET", "product_publish.php?id=" + id + "&status=" + status, true);
+            // 当get请求发送后，若server有响应，则在上方xmlhttp.onreadystatechange函数中执行
+            xmlhttp.send();
+        }
+    </script>
     <title>PHP商城-管理后台</title>
     <?php require_once 'header.php'; ?>
 </head>
@@ -61,7 +87,8 @@ $total_pages = ceil($total_rows / $count_per_page);
                         echo "<td>" . show_product_publish_status($row['publish_status']) . "</td>";
                         echo "<td>" . $row['publish_time'] . "</td>";
                         echo "<td><a href='product_edit.php?id=$id'><span data-feather='edit'></span></a>&nbsp;&nbsp;";
-                        echo "</td>";
+                        echo "<a href='#' title='上架' onclick='return onPublish({$id}, 1);'><span data-feather='check'></span></a>&nbsp;&nbsp;";
+                        echo "<a href='#' title='下架' onclick='return onPublish({$id}, 0);'><span data-feather='x'></span></a></td>";
                         echo "</tr>";
                     }
                     ?>
