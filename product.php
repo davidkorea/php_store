@@ -44,7 +44,8 @@ $total_pages = ceil($total_rows / $count_per_page);
                     </thead>
                     <tbody>
                     <?php
-                    $sql = "select p.*,c.name as cat_name from product p left join category c on p.cat = c.code order by id desc LIMIT ?,? ";
+                    $sql = "select p.*,c.name as cat_name from product p left join category c on p.cat = c.code order by id asc LIMIT ?,? ";
+                    // desc z->a, asc a->z
                     $stmt = mysqli_prepare($mysqli, $sql);
                     mysqli_stmt_bind_param($stmt, 'ii', $offset, $count_per_page);
                     mysqli_stmt_execute($stmt);

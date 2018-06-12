@@ -1,17 +1,45 @@
 <?php
 require_once 'mysql.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if ($_POST['id'] > 0) {
+    $upload_success = false;
+    if ($_FILES['pic']['size'] > 0 && getimagesize($_FILES['pic']['tmp_name'])){
+        // 全局变量_FILE['pic']['size']检测到名为pic的input的size大小>0，['tmp_name']上传时临时文件名
+        // 而且getimagesize判断图片格式文件的大小存在，而不是exe，doc等文件格式的大小
+        $arr_file_name = explode(".", $_FILES['pic']['name']); // split('.')[-1] 取得上传文件的后缀名
+        $ext = $arr_file_name[count($arr_file_name) - 1]; //文件格式后缀
+        $pic_file_name = $time_dir . md5(uniqid(microtime(true), true)) . '.' . $ext;
+        //需要保存在db的文件名
+        $upload_success = move_uploaded_file($_FILES['pic']['tmp_name'], $UPLOAD_DIR . $pic_file_name);
+        //把存在临时文件夹的上传文件move到本地实际文件夹中
+    }
+
+    // 以下分为4种情况，
+    //1.已存在，已上传-修改
+    // 2.已存在，未上传
+    // 3.未存在，已上传 ？？
+    // 4. 未存在，未上传-新增
+    if ($_POST['id'] > 0 && $upload_success) {
+        $sql = "update product set `name`=?,`price`=?,cat=?,description=?,pic_path=? where id=?";
+        $stmt = mysqli_prepare($mysqli, $sql);
+        mysqli_stmt_bind_param($stmt, 'sdsssi', $_POST['name'], $_POST['price'],
+            $_POST['cat'], $_POST['description'], $pic_file_name, $_POST['id']);
+    } else if ($_POST['id'] > 0 && !$upload_success) {
         $sql = "update product set `name`=?,`price`=?,cat=?,description=? where id=?";
         $stmt = mysqli_prepare($mysqli, $sql);
         mysqli_stmt_bind_param($stmt, 'sdssi', $_POST['name'], $_POST['price'],
             $_POST['cat'], $_POST['description'], $_POST['id']);
-        // sdssi - d = decimal, exact num for price
+
+    } else if (!$_POST['id'] && $upload_success) {
+        $sql = "insert into product (`name`,`price`,`cat`,`description`,`create_time`,`pic_path`) VALUES (?,?,?,?,now(),?)";
+        $stmt = mysqli_prepare($mysqli, $sql);
+        mysqli_stmt_bind_param($stmt, 'sdsss', $_POST['name'], $_POST['price'],
+            $_POST['cat'], $_POST['description'], $pic_file_name);
     } else {
         $sql = "insert into product (`name`,`price`,`cat`,`description`,`create_time`) VALUES (?,?,?,?,now())";
         $stmt = mysqli_prepare($mysqli, $sql);
         mysqli_stmt_bind_param($stmt, 'sdss', $_POST['name'], $_POST['price'],
             $_POST['cat'], $_POST['description']);
+
     }
     $result = mysqli_stmt_execute($stmt);
     if ($result) {
@@ -48,7 +76,8 @@ $id = $row['id'];
         <?php require_once 'sidebar.php' ?>
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
             <h6>商品-编辑</h6>
-            <form action="product_edit.php" method="post">
+            <form action="product_edit.php" method="post" enctype="multipart/form-data">
+<!--                only set enctype="multipart/form-data", can form submit pics or files-->
                 <div class="form-group row">
                     <label for="id" class="col-sm-2 col-form-label">序号</label>
                     <input type="text" class="form-control col-sm-6" id="id" name="id" value="<?php echo $id ?>"
@@ -85,6 +114,20 @@ $id = $row['id'];
                               name="description"><?php echo $row['description'] ?></textarea>
 <!--                 textarea - multi-lines input-->
                 </div>
+
+                <?php
+                if ($row['pic_path']) { ?>
+                    <div class="form-group row">
+                        <label for="pic" class="col-sm-2 col-form-label"></label>
+                        <img src="<?php echo $IMAGE_URL_PREFIX . $row['pic_path']; ?>" class='img-thumbnail'
+                             style='max-width:200px;max-height:200px;'>;
+                    </div>
+                <?php } ?>
+                <div class="form-group row">
+                    <label for="pic" class="col-sm-2 col-form-label">图片</label>
+                    <input type="file" class="form-control col-sm-6" id="pic" name="pic">
+                </div>
+
                 <div class="form-group row">
                     <label for="create_time" class="col-sm-2 col-form-label">创建时间</label>
                     <input type="text" class="form-control col-sm-6" id="create_time" name="create_time"
