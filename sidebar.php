@@ -6,7 +6,6 @@ $script_name = basename($_SERVER['SCRIPT_NAME'], '.php');
 $module_name = explode("_", $script_name)[0];
 // 对于 category_edit.php页面，会导致菜单高亮消失，所以类似python分割后取第一个script_name.split('_')[0]
 ?>
-
 <nav class="col-md-2 d-none d-md-block bg-light sidebar">
     <div class="sidebar-sticky">
         <ul class="nav flex-column">
@@ -18,17 +17,17 @@ $module_name = explode("_", $script_name)[0];
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link<?php echo $module_name == 'order' ? ' active' : ''; ?>"
-                   href="order.php">
-                    <span data-feather="file"></span>
-                    订单
-                </a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link<?php echo $module_name == 'product' ? ' active' : ''; ?>"
                    href="product.php">
                     <span data-feather="shopping-cart"></span>
                     商品
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link<?php echo $module_name == 'category' ? ' active' : ''; ?>"
+                   href="category.php">
+                    <span data-feather="list"></span>
+                    商品分类
                 </a>
             </li>
             <li class="nav-item">
@@ -39,10 +38,10 @@ $module_name = explode("_", $script_name)[0];
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link<?php echo $module_name == 'category' ? ' active' : ''; ?>"
-                   href="category.php">
-                    <span data-feather="list"></span>
-                    商品分类
+                <a class="nav-link<?php echo $module_name == 'order' ? ' active' : ''; ?>"
+                   href="order.php">
+                    <span data-feather="file"></span>
+                    订单
                 </a>
             </li>
         </ul>
