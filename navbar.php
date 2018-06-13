@@ -3,7 +3,7 @@
     <input class="form-control form-control-dark w-100" type="text" placeholder="搜索" aria-label="搜索">
     <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
-            <a class="nav-link" href="#">登录</a>
+            <a class="nav-link" href="login.php">登录</a>
         </li>
     </ul>
 </nav>

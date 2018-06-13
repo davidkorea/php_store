@@ -27,6 +27,7 @@ $total_pages = ceil($total_rows / $count_per_page);
         <?php require_once 'sidebar.php' ?>
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
             <h6>用户</h6>
+            <a href='#' class='btn'><span data-feather='plus'></span>新增</a>
             <div class="table-responsive">
                 <table class="table table-striped table-sm">
                     <thead>
@@ -116,8 +117,13 @@ $total_pages = ceil($total_rows / $count_per_page);
 
 <?php require_once 'footer.php'; ?>
 <script>
+    $("a.btn").on('click', function () {
+        $('#editUserModal').modal('show');
+    });
+
     $("td a.user_edit").on('click', function () {
         var id = $(this).data('id');
+
         $.ajax({
             url: 'user_load.php',
             data: {id: id},
