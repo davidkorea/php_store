@@ -80,6 +80,7 @@ $total_pages = ceil($total_rows / $count_per_page);
     </div>
 </div>
 
+<!--modal（！=model）为bootstrap的一个js？？控件，dialog对话窗功能-->
 <div class="modal" tabindex="-1" role="dialog" id="editUserModal">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -123,10 +124,10 @@ $total_pages = ceil($total_rows / $count_per_page);
             dataType: 'json'
         }).done(function (data) {
             var user = data;
-            $('#id').val(user.id);
+            $('#id').val(user.id); //给modal的id，email，nickname绑定user_load.php返回的信息
             $('#email').val(user.email);
             $('#nickname').val(user.nickname);
-            $('#editUserModal').modal('show');
+            $('#editUserModal').modal('show'); //使id为editUserModal的modal显示出来
         });
     });
     $('#btnSaveUser').click(function () {
