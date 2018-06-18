@@ -16,5 +16,16 @@
 <!-- Icons -->
 <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
 <script>
-    feather.replace()
+    feather.replace();
+
+    $(function () {
+            $('#search').on('keypress', function (event) {
+                if (event.keyCode === 13){
+                    location.href = 'index.php?q=' + $('#search').val();
+                }
+            })
+        }
+    ); // $ means if current page is ready,then execute this fuction
+    // .on(a, function(b)) means when event a is listened, then run function b
+    // enter keycode = 13
 </script>
