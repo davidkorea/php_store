@@ -1,57 +1,36 @@
 <?php
-require_once ('mysql.php');
-if (isset($_POST['email'])){
-    $sql = "select * from user where email= ?";
-    $stmt = mysqli_prepare($mysqli, $sql);
-    mysqli_stmt_bind_param($stmt,'s',$_POST['email']);
-    mysqli_stmt_execute($stmt);
-    $result = mysqli_stmt_get_result($stmt);
-    $count = mysqli_stmt_affected_rows($stmt);
-    if ($count == 0){
-        exit("email:" . $_POST['email'] . " did not register.");
-    }
-    $row = mysqli_fetch_assoc($result);
-
-    if (password_verify($_POST['password'], $row['password'])){
-        $_SESSION['login'] = true;
-        $_SESSION['email'] = $row['email'];
-        $_SESSION['nickname'] = $row['nickname'];
-//        $_SESSION['domain'] = 'localhost';
+session_start();
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if ($_POST['name'] == 'admin' && $_POST['password'] == 'admin') {
+        $_SESSION['admin_login'] = "1";
         header("Location: index.php");
         exit;
-    }else{
-        exit('Password wrong');
+    } else {
+        exit('管理员用户名/密码错误');
     }
-    mysqli_close($mysqli);
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script type="text/javascript">
-        function validateForm() {
-            var email = document.forms["loginForm"]['email'].value;
-            if (email == null || email == ""){
-                alert('pls input email');
-                return false;
-            }
-            var password = document.forms['loginForm']['password'].value;
-            if (password == null || password == ""){
-                alert('pls input pw');
-                return false;
-            }
-        }
-    </script>
     <meta charset="UTF-8">
-    <title>PHP Store - Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+          integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>PHP商城-管理后台=登录</title>
 </head>
-<body>
-<form action="login.php" method="post" name="loginForm" onsubmit="return validateForm();">
-    Email: <input type="email" name="email"><br>
-    Password: <input type="password" name="password"><br>
-    <input type="submit">
+<body class="text-center">
+<form action="login.php" method="post" id="loginForm" name="loginForm" class="form" onsubmit="return validateForm();">
+    <h1 class="h3 mb-3">管理员登录</h1>
+    <label for="name" class="sr-only">管理员</label>
+    <input type="text" name="name" id="name" class="form-control" required autofocus placeholder="管理员">
+    <label for="inputPassword" class="sr-only">密码</label>
+    <input type="password" name="password" id="inputPassword" class="form-control" required placeholder="密码">
+    <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+    <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
 </form>
-<a href="find_password.php">Forgot password?</a>
 </body>
 </html>

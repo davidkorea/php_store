@@ -1,5 +1,12 @@
 <?php
 session_start();
+
+if (!isset($_SESSION['admin_login']) || $_SESSION['admin_login'] != "1") {
+    header("Location: login.php");
+    exit;
+}
+
+
 $mysqli = mysqli_connect('localhost','shop','shop','shop');
 if (!$mysqli){
     printf("can't connect to db. EC: %s", mysqli_connect_error());
