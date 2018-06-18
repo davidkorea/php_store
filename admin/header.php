@@ -4,5 +4,5 @@
       crossorigin="anonymous">
 
 <!-- Custom styles for this template -->
-<link rel="stylesheet" href="./css/admin.css">
+<link rel="stylesheet" href="../css/admin.css">
 
