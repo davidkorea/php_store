@@ -21,3 +21,34 @@ function show_product_publish_status($status)
 {
     return $status == 1 ? '已上架' : '未上架';
 }
+
+function show_order_status($status)
+{
+    $msg = '';
+    switch ($status) {
+        case 0:
+            $msg = '未支付';
+            break;
+        case 1:
+            $msg = '已取消';
+            break;
+        case 2:
+            $msg = '已支付';
+            break;
+        case 3:
+            $msg = '已审核';
+            break;
+        case 4:
+            $msg = '已发货';
+            break;
+        case 5:
+            $msg = '已完成';
+            break;
+        case 10:
+            $msg = '已取消';
+            break;
+        default:
+            break;
+    }
+    return $msg;
+}
