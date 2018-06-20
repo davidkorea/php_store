@@ -248,3 +248,5 @@ if (isset($_SESSION["login"]) && $_SESSION["login"]){
 1. [PHP mysql_fetch_assoc() 函数](http://www.w3school.com.cn/php/func_mysql_fetch_assoc.asp)
 2. [PHP mysql_fetch_array() 函数](http://www.w3school.com.cn/php/func_mysql_fetch_array.asp)
 3. [PHP mysql_fetch_row() 函数](http://www.w3school.com.cn/php/func_mysql_fetch_row.asp)
+
+# Issue 10 - xdebug
