@@ -249,4 +249,5 @@ if (isset($_SESSION["login"]) && $_SESSION["login"]){
 2. [PHP mysql_fetch_array() 函数](http://www.w3school.com.cn/php/func_mysql_fetch_array.asp)
 3. [PHP mysql_fetch_row() 函数](http://www.w3school.com.cn/php/func_mysql_fetch_row.asp)
 
-# Issue 10 - xdebug
+# Issue 10 - Xdebug
+[Installing Xdebug for XAMPP with PHP 7.x](https://gist.github.com/odan/1abe76d373a9cbb15bed)
