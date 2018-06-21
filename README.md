@@ -251,3 +251,6 @@ if (isset($_SESSION["login"]) && $_SESSION["login"]){
 
 # Issue 10 - Xdebug
 [Installing Xdebug for XAMPP with PHP 7.x](https://gist.github.com/odan/1abe76d373a9cbb15bed)
+
+
+
